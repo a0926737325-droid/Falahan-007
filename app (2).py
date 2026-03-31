@@ -7,7 +7,7 @@ from io import BytesIO
 
 # --- 0. 系統配置 ---
 st.set_page_config(
-    page_title="阿美語 - 海洋 Liyal", 
+    page_title="阿美語 - 海~我們的冰箱", 
     page_icon="🌊", 
     layout="centered", 
     initial_sidebar_state="collapsed"
@@ -120,40 +120,38 @@ st.markdown("""
 
 # --- 1. 資料設定 ---
 VOCABULARY = [
-    {"amis": "salawacan", "zh": "海岸", "emoji": "🏖️", "file": "v_salawacan"},
-    {"amis": "kanatal",   "zh": "海島", "emoji": "🏝️", "file": "v_kanatal"},
-    {"amis": "tapelik nu liyal/laying nu liyal", "zh": "海浪", "emoji": "🌊", "file": "v_tapelik"},
-    {"amis": "cunami",    "zh": "海嘯", "emoji": "🌊🌪️", "file": "v_cunami"},
-    {"amis": "rariyaran", "zh": "海上", "emoji": "🚢", "file": "v_rariyaran"},
+    {"amis": "foting", "zh": "魚", "emoji": "🐟", "file": "v_foting"},
+    {"amis": "kalang", "zh": "螃蟹", "emoji": "🦀", "file": "v_kalang"},
+    {"amis": "'afar",  "zh": "蝦子", "emoji": "🦐", "file": "v_afar"},
 ]
 
 SENTENCES = [
     {
-        "amis": "Iraay ku valiyus, matungalay ku tapelik tu salawacan nu liyal.", 
-        "zh": "有颱風，沿海地區的浪變高了。", 
-        "emoji": "🌀", 
-        "file": "s_valiyus"
+        "amis": "Mifoting ci mama i riyar.", 
+        "zh": "爸爸在海邊捕魚。", 
+        "emoji": "🎣", 
+        "file": "s_mifoting"
     },
     {
-        "amis": "Cacay ofad ku kasakanatal nu Ripun.", 
-        "zh": "日本有一萬多個海島。", 
-        "emoji": "🇯🇵", 
-        "file": "s_ripun"
+        "amis": "Mikalang ci ina i riyar.", 
+        "zh": "媽媽在海邊抓螃蟹。", 
+        "emoji": "🏖️", 
+        "file": "s_mikalang"
     },
     {
-        "amis": "I rariyaran adihayay ku lunan a mivuting.", 
-        "zh": "在海上有很多漁船捕魚。", 
-        "emoji": "🛥️", 
-        "file": "s_lunan"
+        "amis": "Mi'afar kako i riyar.", 
+        "zh": "我在海邊抓蝦子。", 
+        "emoji": "🌊", 
+        "file": "s_miafar"
     },
 ]
 
 QUIZ_DATA = [
-    {"q": "Iraay ku valiyus, matungalay ku ______ tu salawacan nu liyal.", "zh": "有颱風，沿海地區的浪變高了", "ans": "tapelik", "opts": ["tapelik", "kanatal", "cunami"]},
-    {"q": "______ / 海嘯", "zh": "海嘯", "ans": "cunami", "opts": ["cunami", "salawacan", "rariyaran"]},
-    {"q": "I ______ adihayay ku lunan a mivuting.", "zh": "在海上有很多漁船捕魚", "ans": "rariyaran", "opts": ["rariyaran", "kanatal", "salawacan"]},
-    {"q": "______ / 海島", "zh": "海島", "ans": "kanatal", "opts": ["kanatal", "tapelik", "cunami"]},
-    {"q": "______ / 海岸", "zh": "海岸", "ans": "salawacan", "opts": ["salawacan", "rariyaran", "kanatal"]},
+    {"q": "______ ci mama i riyar.", "zh": "爸爸在海邊捕魚。", "ans": "Mifoting", "opts": ["Mifoting", "Mikalang", "Mi'afar"]},
+    {"q": "______ / 螃蟹", "zh": "螃蟹", "ans": "kalang", "opts": ["kalang", "foting", "'afar"]},
+    {"q": "______ kako i riyar.", "zh": "我在海邊抓蝦子。", "ans": "Mi'afar", "opts": ["Mi'afar", "Mifoting", "Mikalang"]},
+    {"q": "______ / 蝦子", "zh": "蝦子", "ans": "'afar", "opts": ["'afar", "foting", "kalang"]},
+    {"q": "______ / 魚", "zh": "魚", "ans": "foting", "opts": ["foting", "kalang", "'afar"]},
 ]
 
 # --- 1.5 強力語音核心 (診斷版) ---
@@ -190,7 +188,7 @@ def init_quiz():
     # Q1
     q1_target = random.choice(VOCABULARY)
     others = [v for v in VOCABULARY if v['amis'] != q1_target['amis']]
-    q1_options = random.sample(others, 2) + [q1_target]
+    q1_options = others + [q1_target]
     random.shuffle(q1_options)
     st.session_state.q1_data = {"target": q1_target, "options": q1_options}
 
@@ -347,9 +345,9 @@ def show_debug_info():
 def main():
     st.markdown("""
     <div class="header-container">
-        <h1 class="main-title">O LIYAL</h1>
-        <div class="sub-title">海洋</div>
-        <div class="teacher-tag">講師：孫秀蘭 | 教材提供者：孫秀蘭</div>
+        <h1 class="main-title">RIYAR</h1>
+        <div class="sub-title">海~我們的冰箱</div>
+        <div class="teacher-tag">講師：黃淑珍 | 教材提供者：黃淑珍</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -364,4 +362,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
